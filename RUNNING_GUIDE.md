@@ -30,14 +30,29 @@ docker build -t ocpi-simulator .
 
 # step2: Run Container
 
-docker run -p 6002:6002 ocpi-simulator
+# docker run -p 6002:6002 ocpi-simulator
+
+docker run -d -p 6002:6002 --name ocpi-simulator ocpi-simulator
+
+# 1. Stop the container (Keep it in the background)  10ec6cc7a0c1 : container_id
+docker stop 10ec6cc7a0c1   
+
+#  Remove the container (Complete "Down")
+
+docker rm -f e8cb643c71e5
+
+#
+docker stop ocpi-simulator
+docker rm ocpi-simulator
+
+docker build -t ocpi-simulator .
+
+docker run -d -p 6002:6002 --name ocpi-simulator ocpi-simulator
 
 
-
-
-
-🛠️ Run Without Docker (Local)
+# 🛠️ Run Without Docker (Local)
 Step 1: Install dependencies
 npm install
 Step 2: Start server
 npm start
+

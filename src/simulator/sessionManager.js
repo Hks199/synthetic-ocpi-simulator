@@ -173,7 +173,7 @@ function startSession(data, EMSP_URL) {
     // ⚡ Charging simulation
     const interval = setInterval(async () => {
 
-        session.kwh += Math.random() * 1;
+        session.kwh += 0.1 * 1;
         session.last_updated = new Date();
 
         console.log(`⚡ Charging ${session.id}: ${session.kwh.toFixed(2)} kWh`);
@@ -184,7 +184,7 @@ function startSession(data, EMSP_URL) {
 
         console.log("📡 Session pushed to Adaptor");
 
-    }, 20000);
+    }, 5000);
 
     session.interval = interval;
 
