@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-let EMSP_URL = "https://uat-bpp-opci-adaptor.ubc.nbsl.org.in/ocpi/2.2.1";
+let EMSP_URL = "https://uat-bpp-opci-adapter.ubc.nbsl.org.in/ocpi/2.2.1";
 
 let CPO_URL = "https://uat-bpp-opci.ubc.nbsl.org.in/ocpi/2.2.1";
 
