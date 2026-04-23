@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const crypto = require("crypto");
 
 const { startSession } = require("../simulator/sessionManager");
 const { stopSession } = require("../simulator/cdrGenerator");
-const { getEMSPUrl,EMSP_URL } = require("./credentials");
+const { getEMSPUrl } = require("./credentials");
 
 /**
  * ✅ Send Command Response to EMSP (response_url)
@@ -61,9 +62,8 @@ router.post("/START_SESSION", async (req, res) => {
 
         console.log("⚡ Session started:", session.id);
 
-        // ✅ VERY IMPORTANT (fix auto stop issue)
-        let response_url =  `${EMSP_URL}/commands/START_SESSION/${body.authorization_reference}`
-        await sendCommandResponse(response_url);
+        // OCPI requires sending the async command result to the provided response_url.
+        await sendCommandResponse(body.response_url);
 
         return res.json({
             status_code: 1000,
